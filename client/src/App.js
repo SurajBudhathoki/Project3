@@ -1,25 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+import Post from './components/postFeed/Post';
+import Navbar from './components/navbar/navbar';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    postList : [],
+    newPost: '',
+
+  }
+
+  componentDidMount(){
+
+    this.getPosts();
+  }
+
+  getPosts = () => {
+    axios.get('/api/posts')
+    .then((result) => {
+     
+      this.setState({postList: result.data});
+      console.log(this.state.postList);
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+       <Navbar  /> 
+       <br></br>
+       <br></br>  
+         
+          <Post posts = {this.state.postList} />
+       
+          <button> Create a new post</button>
       </div>
     );
   }

@@ -1,0 +1,21 @@
+.navs {
+    list-style-type:none;
+    float: left;
+  
+    margin-left: 20px;
+    padding: 0px;
+
+}
+
+.buttons {
+    list-style-type:none;
+    float: right;
+    border: none;
+    background: none;
+    margin-right: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: brown;
+}
